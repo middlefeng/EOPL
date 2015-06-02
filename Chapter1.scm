@@ -46,4 +46,12 @@
 			 	(cons (car los) (remove-first s (cdr los)))))))
 
 
+(define (occurs-free? sym exp)
+	(cond ((atom? exp) (eqv? sym exp))
+		  ((eqv? (car exp) 'lambda)
+		  		(and (not eqv? sym (car (car (cdr exp))))
+		  			 (occurs-free? sym (car (cdr (cdr exp))))))
+		  (else (or (occurs-free? sym (car exp))
+		  			(occurs-free? sym (car (cdr exp))))) ) )
+
 
