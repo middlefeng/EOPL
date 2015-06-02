@@ -9,6 +9,16 @@
 (define #t true)
 (define #f false)
 
+
+(define (eqv? a b)
+	(eq? a b))
+
+
+
+
+
+
+
 (define in-S?
     (lambda (n)
 		(if (zero? n) #t
@@ -24,3 +34,16 @@
 			(if (zero? n)
 				(car lst)
 				(nth-element (cdr lst) (- n 1)) ) ) ) )
+
+
+
+(define remove-first
+    (lambda (s los)
+		(if (null? los)
+			'()
+			(if (eqv? (car los) s)
+				(cdr los)
+			 	(cons (car los) (remove-first s (cdr los)))))))
+
+
+
