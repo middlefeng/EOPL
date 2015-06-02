@@ -16,3 +16,11 @@
 				(begin (in-S? (- n 3)))
 				(begin #f)))))
 
+
+(define nth-element
+	(lambda (lst n)
+		(if (null? lst)
+			(display 'list too short')
+			(if (zero? n)
+				(car lst)
+				(nth-element (cdr lst) (- n 1)) ) ) ) )
