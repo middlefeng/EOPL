@@ -112,6 +112,45 @@
 
 
 
+(define (append-list lst1 lst2)
+	(if (null? lst1)
+		lst2
+		(cons (car lst1) (append-list (cdr lst1) lst2)) ))
+
+
+(define (list-set lst n x)
+	(if (or (null? lst) (< n 0))
+		lst
+		(if (eq? 0 n)
+			(cons x (cdr lst))
+			(cons (car lst) (list-set (cdr lst) (- n 1) x)) )))
+
+
+(define (count-occurrences s slist)
+	(cond ((null? slist) 0)
+		  ((atom? slist) 
+		  		(if (eq? s slist) 1 0) )
+		  (else (+ (count-occurrences s (car slist))
+		  		   (count-occurrences s (cdr slist)))) ))
+
+
+
+
+
+(define (product-sym-list sym sos)
+	(if (null? sos)
+		sos
+		(cons (list sym (car sos))
+			  (product-sym-list sym (cdr sos))) ))
+
+
+(define (product sos1 sos2)
+	(if (null? (cdr sos1))
+		(product-sym-list (car sos1) sos2)
+		(append-list (product-sym-list (car sos1) sos2) (product (cdr sos1) sos2)) ))
+
+
+
 		
 
 
