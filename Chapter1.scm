@@ -13,6 +13,11 @@
 (define (eqv? a b)
 	(eq? a b))
 
+(define (append lst x)
+	(if (null? lst)
+		(list x)
+		(cons (car lst) (append (cdr lst) x))))
+
 
 
 
@@ -69,6 +74,45 @@
 			(subst new old sexp)) ) )
 
 
+
+
+
+(define (duple n x)
+	(cond ((eq? 0 n) '())
+		  ((eq? 1 n) (list x))
+		  (else (cons x (duple (- n 1) x)))))
+
+
+(define (invert-elements lst)
+	(if (null? lst)
+		lst
+		(append (invert-elements (cdr lst)) (car lst))))
+
+(define (invert lst)
+	(if (null? lst)
+		lst
+		(cons (invert-elements (car lst)) (invert (cdr lst)))))
+
+
+
+(define (swapper-sym s1 s2 s)
+	(cond ((eq? s1 s) s2)
+		  ((eq? s2 s) s1)
+		  (else s)))
+
+(define (swapper s1 s2 lst)
+	(if (null? lst)
+		lst
+		(if (atom? (car lst))
+			(cons (swapper-sym s1 s2 (car lst))
+			  	  (swapper s1 s2 (cdr lst)))
+			(cons (swapper s1 s2 (car lst))
+				  (swapper s1 s2 (cdr lst))) ) ) )
+
+
+
+
+		
 
 
 
