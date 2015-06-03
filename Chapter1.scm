@@ -55,3 +55,32 @@
 		  			(occurs-free? sym (car (cdr exp))))) ) )
 
 
+(define subst
+	(lambda (new old exp)
+		(if (null? exp) '()
+			(cons (subst-in-s-exp new old (car exp))
+				  (subst new old (cdr exp)))) ) )
+
+
+(define subst-in-s-exp
+	(lambda (new old sexp)
+		(if (atom? sexp)
+			(if (eqv? old sexp) new sexp)
+			(subst new old sexp)) ) )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
