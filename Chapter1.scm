@@ -24,6 +24,10 @@
 
 
 
+
+
+
+
 (define in-S?
     (lambda (n)
 		(if (zero? n) #t
@@ -58,6 +62,25 @@
 		  			 (occurs-free? sym (car (cdr (cdr exp))))))
 		  (else (or (occurs-free? sym (car exp))
 		  			(occurs-free? sym (car (cdr exp))))) ) )
+
+
+
+
+(define number-elements-from
+	(lambda (lst n)
+		(if (null? lst) '()
+						(cons (list n (car lst))
+						 	  (number-elements-from (cdr lst)
+						 	   						(+ 1 n)))) ) )
+
+
+(define (list-sum lst)
+	(if (null? lst) 0
+					(+ (car lst)
+					   (list-sum (cdr lst)))))
+
+
+
 
 
 (define subst
