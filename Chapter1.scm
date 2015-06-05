@@ -55,6 +55,11 @@
 		  			(occurs-free? sym (car (cdr exp))))) ) )
 
 
+
+
+
+
+
 (define subst
 	(lambda (new old exp)
 		(if (null? exp) '()
@@ -72,6 +77,18 @@
 
 
 
+(define number-elements-from
+	(lambda (lst n)
+		(if (null? lst) '()
+						(cons (list n (car lst))
+						 	  (number-elements-from (cdr lst)
+						 	   						(+ 1 n)))) ) )
+
+
+(define (list-sum lst)
+	(if (null? lst) 0
+					(+ (car lst)
+					   (list-sum (cdr lst)))))
 
 
 
