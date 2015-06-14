@@ -26,3 +26,22 @@
 	(env search-var))
 
 
+
+
+; Procedural Representation of Stack
+
+
+(define empty-stack
+	(lambda () 
+		(lambda ()
+			(display "stack empty!") )))
+
+
+(define (push stack item)
+	(lambda ()
+		(list item stack)))
+
+
+(define (pop stack)
+	(stack))
+
